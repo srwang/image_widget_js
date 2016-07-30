@@ -1,0 +1,27 @@
+<!Doctype html>
+<html ng-app='imgWidget'>
+	<head>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		<link rel='stylesheet' type='text/css' href='css/main.css'>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+	</head>
+	<body>
+		<div ng-controller='ImageGalleryController as gallery'>
+
+		<div ng-repeat='image in gallery.images' id='{{image.id}}' class='img-container' style='background-image:url("{{image.url}}")'>
+			<div class='img-hover-box img-top-hover'>
+				<h1 class='img-title'>{{image.title}}</h1>
+				<div class='img-nav'>
+					<p class='last-btn'><</p>
+					<p class='next-btn'>></p>
+				</div>
+			</div>
+			<div class='img-hover-box img-bottom-hover'>
+				<h3>{{image.caption}}</h3>
+			</div>
+		</div>
+	</body>
+	<script src='js/img-widget.js'></script>
+	<script src='js/main.js'></script>
+</html>
