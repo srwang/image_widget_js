@@ -1,6 +1,7 @@
 //variables
-$widget-width: 800px;
 $widget-height: 95vh;
+$widget-width: 900px;
+$hover-links-top-margin: 0px;
 
 //scrollbar visible
 ::-webkit-scrollbar {
@@ -22,17 +23,49 @@ $widget-height: 95vh;
 
 body {
 	font-family: 'Open Sans', sans-serif;
+	background-color: black;
+}
+
+.btn:hover {
+	border: 2px solid blue !important;
+	cursor: pointer;
+}
+
+//leftnav
+nav {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	min-width: 5%;
+	background-color: rgb(206, 199, 199);
+	padding: 20px;
+	z-index: 1;
+}
+
+nav h3, nav form {
+	display: none;
+}
+
+nav:hover h3, nav:hover form {
+	display: block;
+	transition: 3s;
+}
+
+nav form {
+	input {
+		padding: 5px;
+		margin-bottom: 20px;	
+	}
 }
 
 //widget
 .img-container {
-	display: none;
 	margin: 15px auto 0px auto;
 	padding: 0;
-	max-width: $widget-width;
 	height: $widget-height;
+	max-width: $widget-width;
 	position: relative;
-	//border: 1px solid rgb(167, 165, 165);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -46,34 +79,36 @@ body {
 		border: 1px solid rgb(226, 200, 223);
 	}
 
-	.img-title {
-		float: left;
+	.img-top-hover {
+		top: 0px;
+	}
+
+	.img-remove {
+		display: inline-block;
+		position: absolute;
+		top: $hover-links-top-margin;
+		right: 30px;
+		text-decoration: underline;
+		color: blue;
+	}
+
+	.img-remove:hover {
+		cursor: pointer;
 	}
 
 	.img-nav {
 		float: right;
-		position: relative;
-		bottom: 15px;
-		right: 10px;
+		margin-top: $hover-links-top-margin;
 
 		p {
 			display: inline-block;
-			font-size: 2em;
 			padding: 2px 15px;
+			font-size: 2em;
 			border: 2px solid rgb(226, 200, 223);
 			-webkit-box-shadow: 13px 13px 15px -10px rgba(145,94,125,1);
 			-moz-box-shadow: 13px 13px 15px -10px rgba(145,94,125,1);
 			box-shadow: 13px 13px 15px -10px rgba(145,94,125,1);
 		}
-
-		p:hover {
-			border: 2px solid blue;
-			cursor: pointer;
-		}
-	}
-
-	.img-top-hover {
-		top: 0px;
 	}
 
 	.img-bottom-hover {
@@ -88,8 +123,13 @@ body {
 			line-height: 1.5;
 		}
 	}	
+
+	.hidden-img {
+		display: none;
+	}
 }
 
 .img-container:hover .img-hover-box {
 	display: block;
+	transition: 2s;
 }

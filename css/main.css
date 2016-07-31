@@ -13,14 +13,39 @@
   box-sizing: border-box; }
 
 body {
-  font-family: 'Open Sans', sans-serif; }
+  font-family: 'Open Sans', sans-serif;
+  background-color: black; }
+
+.btn:hover {
+  border: 2px solid blue !important;
+  cursor: pointer; }
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  min-width: 5%;
+  background-color: #cec7c7;
+  padding: 20px;
+  z-index: 1; }
+
+nav h3, nav form {
+  display: none; }
+
+nav:hover h3, nav:hover form {
+  display: block;
+  transition: 3s; }
+
+nav form input {
+  padding: 5px;
+  margin-bottom: 20px; }
 
 .img-container {
-  display: none;
   margin: 15px auto 0px auto;
   padding: 0;
-  max-width: 800px;
   height: 95vh;
+  max-width: 900px;
   position: relative;
   background-size: cover;
   background-position: center;
@@ -32,26 +57,28 @@ body {
     padding: 15px 30px;
     background-color: rgba(226, 200, 223, 0.82);
     border: 1px solid #e2c8df; }
-  .img-container .img-title {
-    float: left; }
+  .img-container .img-top-hover {
+    top: 0px; }
+  .img-container .img-remove {
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    right: 30px;
+    text-decoration: underline;
+    color: blue; }
+  .img-container .img-remove:hover {
+    cursor: pointer; }
   .img-container .img-nav {
     float: right;
-    position: relative;
-    bottom: 15px;
-    right: 10px; }
+    margin-top: 0px; }
     .img-container .img-nav p {
       display: inline-block;
-      font-size: 2em;
       padding: 2px 15px;
+      font-size: 2em;
       border: 2px solid #e2c8df;
       -webkit-box-shadow: 13px 13px 15px -10px #915e7d;
       -moz-box-shadow: 13px 13px 15px -10px #915e7d;
       box-shadow: 13px 13px 15px -10px #915e7d; }
-    .img-container .img-nav p:hover {
-      border: 2px solid blue;
-      cursor: pointer; }
-  .img-container .img-top-hover {
-    top: 0px; }
   .img-container .img-bottom-hover {
     bottom: 0px; }
     .img-container .img-bottom-hover h3 {
@@ -61,8 +88,11 @@ body {
       text-align: justify;
       text-justify: inter-word;
       line-height: 1.5; }
+  .img-container .hidden-img {
+    display: none; }
 
 .img-container:hover .img-hover-box {
-  display: block; }
+  display: block;
+  transition: 2s; }
 
 /*# sourceMappingURL=main.css.map */
