@@ -43,6 +43,14 @@ nav {
 	z-index: 1;
 }
 
+nav h1 {
+	text-align: center;
+}
+
+nav:hover h1 {
+	display: none;
+}
+
 nav h3, nav form {
 	display: none;
 }
