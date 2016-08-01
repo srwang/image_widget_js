@@ -1,5 +1,7 @@
 angular.module('imgWidget', [])
   .controller('ImageGalleryController', ['$scope', function($scope) {
+
+    //default images
     $scope.images = [
     	{
 	    	title: 'Myself, kitten. Striving for cat.', 
@@ -27,19 +29,78 @@ angular.module('imgWidget', [])
     	$scope.imgTitle= '';
     	$scope.imgCaption = '';
     	$scope.imgUrl = '';
+    }
 
-    	setTimeout(function(){
-	    	if($scope.images.length===1) {
-	    		$('.img-container#0').show(); 
+    $scope.nextImage = function(ev) {
+        $scope.changeImage('next', $(ev.target));
+    }
+
+    $scope.lastImage = function(ev) {
+        $scope.changeImage('last', $(ev.target));
+    }
+
+    $scope.changeImage = function (direction, btn) {
+        var imgContainer = btn.parents()[2];
+        $(imgContainer).hide();
+
+        //makes sure index resets if last or first element
+        var index = parseInt($(imgContainer).attr('id'));
+
+        if (direction==='next' && index <($('.img-container').length-1)) {
+            index +=1;
+        } else if (direction==='next') {
+            index = 0;
+        } else if (direction==='last' && index > 0) {
+            index -=1;
+        } else if (direction==='last') {
+            index = $('.img-container').length-1;
+        };
+
+        $('.img-container#' + index).fadeIn(200);
+
+    }
+
+    $scope.resize = function (img) {
+        //set container width based on bg img proportions
+        var imageId = img.attr('id'),
+            hiddenImg = document.getElementsByClassName('hidden-img')[imageId],
+            proportion = hiddenImg.naturalWidth / hiddenImg.naturalHeight,
+            newWidth = img.height() * proportion;
+
+        img.css({'max-width':newWidth});
+    }
+
+  }])
+    .directive('removeImg', function () {
+        return {
+          link: function(scope, element) {
+
+            element.bind('click', function(ev) {
+
+                //go to next
+                $(ev.target).parent().find('.next-btn').trigger('click');
+                //delete from scope
+                scope.images.splice(parseInt($(ev.target).parents()[1].id), 1);
+                scope.$apply();
+            });
+          }
+        };
+    })
+    .directive('showFirst', ['$timeout', function($timeout) {
+        return {
+            link: function(scope, element) {
+
+                //allow dom time to create element from template
+                $timeout(function(){
+                    if (!$('.img-container').is(':visible')) {
+                        //show first image by default
+                        $('.img-container#0').show();
+                    } 
+                    
+                    scope.resize($(element));
+                }, 300);
             }
-    	}, 500);
-    }
-
-    $scope.removeImage = function(imageId) {
-    	$('.img-container#' + imageId).find('.next-btn').trigger('click');
-    	$scope.images.splice(imageId, 1);
-    }
-
-  }]);
+        }
+    }]);
 
 

@@ -48,6 +48,7 @@ nav form input {
   margin-bottom: 20px; }
 
 .img-container {
+  display: none;
   margin: 15px auto 0px auto;
   padding: 0;
   height: 95vh;

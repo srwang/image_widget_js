@@ -19,12 +19,12 @@
 			        <input class='btn' type='submit' value='Add'>
 			    </form>
 			</nav>
-			<div ng-repeat='image in images' id='{{images.indexOf(image)}}' class='img-container' style='display:none;background-image:url("{{image.url}}");'>
+			<div show-first ng-repeat='image in images' id='{{images.indexOf(image)}}' class='img-container' style='background-image:url("{{image.url}}");'>
 				<div class='img-hover-box img-top-hover'>
-					<h4 ng-click='removeImage(images.indexOf(image))' class='img-remove'>Remove</h4>
+					<h4 remove-img class='img-remove'>Remove</h4>
 					<div class='img-nav'>
-						<p class='btn last-btn'><</p>
-						<p class='btn next-btn'>></p>
+						<p ng-click='lastImage($event)' class='btn last-btn'><</p>
+						<p ng-click='nextImage($event)' class='btn next-btn'>></p>
 					</div>
 					<h1 class='img-title'>{{image.title}}</h1>
 				</div>
