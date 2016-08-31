@@ -16,25 +16,25 @@
 			        <input type='text' ng-model='imgTitle' placeholder='Image Title'><br>
 			        <input type='text' ng-model='imgUrl' placeholder='Image Url'></br>
 			        <input id='caption-input' type='text' ng-model='imgCaption' placeholder='Image Caption'><br>
-			        <input class='btn' type='submit' value='Add'>
+			        <button type='submit'>Add</button>
 			    </form>
 			</nav>
-			<div show-first ng-repeat='image in images' id='{{images.indexOf(image)}}' class='img-container' style='background-image:url("{{image.url}}");'>
-				<div class='img-hover-box img-top-hover'>
-					<h4 remove-img class='img-remove'>Remove</h4>
-					<div class='img-nav'>
-						<p ng-click='lastImage($event)' class='btn last-btn'><</p>
-						<p ng-click='nextImage($event)' class='btn next-btn'>></p>
+			<figure>
+				<div ng-repeat='image in images' resize ng-show='shownIndex === images.indexOf(image)' class='img-container' style='background-image:url("{{image.url}}");max-width:{{image.width}}'>
+					<div class='img-hover-box img-top-hover'>
+						<h4 ng-click='removeImage()' class='img-remove'>Remove</h4>
+						<div class='img-nav'>
+							<button ng-click='lastImage()' class='last-btn'><</button>
+							<button ng-click='nextImage()' class='next-btn'>></button>
+						</div>
+						<h1 class='img-title'>{{image.title}}</h1>
 					</div>
-					<h1 class='img-title'>{{image.title}}</h1>
+					<div class='img-hover-box img-bottom-hover'>
+						<h3>{{image.caption}}</h3>
+					</div>
 				</div>
-				<div class='img-hover-box img-bottom-hover'>
-					<h3>{{image.caption}}</h3>
-				</div>
-				<img class='hidden-img' src='{{image.url}}'/>
-			</div>
+			</figure>
 		</div>
 	</body>
 	<script src='js/img-widget.js'></script>
-	<script src='js/main.js'></script>
 </html>
